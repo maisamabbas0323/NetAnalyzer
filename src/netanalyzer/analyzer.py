@@ -95,7 +95,7 @@ def _read_sysfs_value(path: str) -> str | None:
     try:
         with open(path, "r", encoding="utf-8") as handle:
             return handle.read().strip()
-    except FileNotFoundError:
+    except (FileNotFoundError, OSError):
         return None
 
 
