@@ -81,6 +81,25 @@ python3 netanalyzer.py --list-interfaces
 python3 netanalyzer.py --details --interval 1 --count 1
 ```
 
+## CLI options (all functionality)
+
+Use any of these options with `python3 netanalyzer.py` or `python3 -m netanalyzer`:
+
+- `-i`, `--interval`: Sampling interval in seconds.
+- `-c`, `--count`: Number of samples to capture (`0` = infinite).
+- `-t`, `--top`: Number of interfaces to display per sample.
+- `--interfaces`: Space-separated interface names to monitor.
+- `--unit`: Display rates in `bytes` or `bits`.
+- `--sort`: Sort by `total`, `rx`, `tx`, `rx-pkts`, or `tx-pkts`.
+- `--show-packets`: Include packet rates in output.
+- `--show-errors`: Include error rates in output.
+- `--show-drops`: Include drop rates in output.
+- `--show-multicast`: Include multicast receive rates in output.
+- `--show-utilization`: Include utilization estimates when link speed is known.
+- `--show-total`: Include an aggregate total line across interfaces.
+- `--details`: Show interface details (state, MTU, speed) before samples.
+- `--list-interfaces`: List detected interfaces and exit.
+
 ## Python API
 
 ```python
