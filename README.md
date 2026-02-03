@@ -7,6 +7,11 @@ NetAnalyzer is a lightweight, real-time network throughput monitor built with pu
 ## Features
 
 - **Real-time sampling** of RX/TX throughput per interface.
+- **Packets, errors, drops, and multicast rates** on demand.
+- **Interface utilization estimates** when link speed is known.
+- **Sorting and filtering** by interface or traffic direction.
+- **Interface detail inspection** (state, MTU, speed).
+- **Aggregate totals** across all interfaces.
 - **Zero external dependencies** (Linux `/proc` only).
 - **CLI-first workflow** with clean, readable output.
 - **Extensible Python API** for integrating into other tools.
@@ -27,7 +32,7 @@ python -m pip install -e .
 Run the CLI and watch live throughput updates:
 
 ```bash
-netanalyzer --interval 1 --top 5
+python3 netanalyzer.py --interval 1 --top 5
 ```
 
 Sample output:
@@ -39,16 +44,41 @@ eth0         RX   12.32 KB/s TX    3.11 KB/s TOTAL   15.43 KB/s
 lo           RX    0.00 B/s  TX    0.00 B/s  TOTAL    0.00 B/s
 ```
 
+You can also run the module directly:
+
+```bash
+python3 -m netanalyzer --interval 1 --top 5
+```
+
 ### Target specific interfaces
 
 ```bash
-netanalyzer --interfaces eth0 wlan0 --interval 0.5 --top 2
+python3 netanalyzer.py --interfaces eth0 wlan0 --interval 0.5 --top 2
 ```
 
 ### Capture a fixed number of samples
 
 ```bash
-netanalyzer --count 10 --interval 2
+python3 netanalyzer.py --count 10 --interval 2
+```
+
+### Show real-time packet, error, and drop rates
+
+```bash
+python3 netanalyzer.py --show-packets --show-errors --show-drops --interval 1
+```
+
+### Include utilization estimates and aggregate totals
+
+```bash
+python3 netanalyzer.py --show-utilization --show-total --interval 1
+```
+
+### List interfaces and inspect details
+
+```bash
+python3 netanalyzer.py --list-interfaces
+python3 netanalyzer.py --details --interval 1 --count 1
 ```
 
 ## Python API
